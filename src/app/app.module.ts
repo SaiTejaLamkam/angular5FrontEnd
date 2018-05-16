@@ -16,7 +16,13 @@ import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+import { FirstPipe } from './first.pipe';
+import { RedBlackDirective } from './red-black.directive';
+import { HeaderComponent } from './header/header.component';
+import { StoreModule } from '@ngrx/store';
 
+import { reducers } from './store/reducers'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,12 +31,17 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     AdminComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent,
+    FirstPipe,
+    RedBlackDirective,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers,{}),
     RouterModule.forRoot([
       {
         path: 'data',
@@ -44,10 +55,14 @@ import { RegisterComponent } from './register/register.component';
       {
         path: 'login',
         component : LoginComponent
+      },{
+        path: 'logout',
+        component : LogoutComponent
       },
       {
         path: 'dashboard',
-        component : DashboardComponent
+        component : DashboardComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'register',

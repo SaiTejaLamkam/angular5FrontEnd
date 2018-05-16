@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   getUserDetails(email, password){
-    return this.http.post<authResponse>('/api/login',{
+    return this.http.post<authResponse>('/api/auth/login',{
       email,
       password
     })
@@ -32,7 +32,7 @@ export class AuthService {
 
 
   registerDetails(email, password){
-    return this.http.post<regResponse>('/api/register',{
+    return this.http.post<regResponse>('/api/auth/register',{
       email,
       password
     })

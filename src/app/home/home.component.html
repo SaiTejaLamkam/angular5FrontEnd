@@ -7,3 +7,64 @@
   <a routerLink = "/dashboard">Dashboard</a>
 
 </p>
+
+<!-- Pipes -->
+<div>
+  <p>Hello world ! somebody owes me {{amount | currency: format}}</p>
+
+  <button (click)="toggleINRandUSD()">Toggle</button>
+</div>
+
+<div>
+  <p>This is Normal test</p>
+  <p>{{"This is Pipe Test" | first:false:"doublequotes"}}</p>
+</div>
+
+<!-- ngIf -->
+
+<!-- type1 -->
+<div *ngIf="type1">Yes</div>
+
+<!-- type2 -->
+<div *ngIf="type2; else falseBlock">Yes</div>
+
+<ng-template #falseBlock>
+  <h1>No</h1>
+</ng-template>
+
+<!-- type 3 -->
+<div *ngIf="type3; then trueBlock else thenBlock">Yes</div>
+
+<ng-template #trueBlock>
+    <h1>Yes</h1>
+  </ng-template>
+
+
+<ng-template #thenBlock>
+  <h1>No</h1>
+</ng-template>
+
+
+<!-- ngNonBindable -->
+<!-- It is used to use curly braces in html without binding -->
+
+<p>ngNonBindable is used to use curly braces in html i.e., like this, <span ngNonBindable>{{name}}</span></p>
+
+
+<!-- ngFor and ngClass -->
+<ul>
+  <li *ngFor="let info of data">
+      <span [ngClass]="{
+        'swift':info.lang === 'Swift',
+        'javascript':info.lang === 'Javascript'
+      }">{{info.lang}} is mostly used on {{info.usedOn}}</span>
+  </li>
+</ul>
+
+
+<!-- Custom Directives -->
+
+<div>
+  <p>This is Normal Text</p>
+  <p appRedBlack>This is Text with Custom Directive</p>
+</div>
